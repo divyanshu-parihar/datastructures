@@ -1,4 +1,5 @@
 mod collection;
+mod problems;
 fn main() {
     println!("Hello, world!");
 }
@@ -6,16 +7,26 @@ fn main() {
 #[cfg(test)]
 mod test {
     mod vector {
-        use std::io::error;
-
-        use crate::collection::base::collectable;
-        use crate::collection::vector::vector;
+        use crate::collection::base::Collectable;
+        use crate::collection::vector::NaiveVector;
         #[test]
-        fn vector_init() -> result<(), error> {
-            let vector: vector<string> = vector::new();
-
+        fn vector_init() -> () {
+            let vector: NaiveVector<String> = NaiveVector::new();
             assert_eq!(vector.get_len(), 0);
-            return ok(());
+        }
+        #[test]
+        fn vector_add() -> () {
+            let mut vector: NaiveVector<u8> = NaiveVector::new();
+            let _ = vector.add(1);
+            assert_eq!(vector.get_len(), 1);
+        }
+        #[test]
+        fn vector_add_capacity() -> () {
+            let mut vector: NaiveVector<u8> = NaiveVector::new();
+            let _ = vector.add(1);
+            let _ = vector.add(2);
+            assert_eq!(vector.get_len(), 2);
+            assert_eq!(vector.get_capacity(), 2);
         }
     }
 }

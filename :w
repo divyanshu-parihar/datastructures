@@ -1,0 +1,40 @@
+use std::cmp::Reverse;
+use std::collections::BinaryHeap;
+/// Find Kth Smallest Element
+///
+/// Returns the Kth smallest element (1-based index).
+/// Note: This implementation sorts the array, modifying it.
+/// Time Complexity: O(n log n)
+/// Space Complexity: O(1) (in-place sort)
+pub fn kth_smallest<T: Ord + Copy>(arr: &mut [T], k: usize) -> Option<T> {}
+
+/// Find Kth Largest Element
+///
+/// Returns the Kth largest element (1-based index).
+pub fn kth_largest<T: Ord + Copy>(arr: &mut [T], k: usize) -> Option<T> {}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_kth_smallest() {
+        let mut arr = vec![7, 10, 4, 3, 20, 15];
+        // Sorted: 3, 4, 7, 10, 15, 20
+        assert_eq!(kth_smallest(&mut arr, 3), Some(7));
+    }
+
+    #[test]
+    fn test_kth_largest() {
+        let mut arr = vec![7, 10, 4, 3, 20, 15];
+        // Sorted: 3, 4, 7, 10, 15, 20
+        // 2nd largest is 15
+        assert_eq!(kth_largest(&mut arr, 2), Some(15));
+    }
+
+    #[test]
+    fn test_kth_out_of_bounds() {
+        let mut arr = vec![1, 2, 3];
+        assert_eq!(kth_smallest(&mut arr, 4), None);
+    }
+}
